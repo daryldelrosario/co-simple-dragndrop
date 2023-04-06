@@ -28,6 +28,10 @@ const optionTexts = document.querySelectorAll(".option-text");
 const answerBox = document.querySelector("#answer-box");
 
 let prevBoxId;
+let prevBox;
+let prevTextContent;
+let textId;
+let textElement;
 
 answerBox.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -38,7 +42,9 @@ answerBox.addEventListener("drop", (event) => {
     const data = event.dataTransfer.getData("text/plain");
     const element = document.getElementById(data);
     if(answerBox.childElementCount > 0) {
+        textElement = document.getElementById(textId);
         answerBox.replaceChild(element, answerBox.children[0]);
+        prevBox.appendChild(textElement);
     } else {
         answerBox.appendChild(element);
     }
@@ -47,6 +53,19 @@ answerBox.addEventListener("drop", (event) => {
 optionTexts.forEach(text => {
     text.addEventListener("dragstart", (event) => {
         event.dataTransfer.setData("text/plain", event.target.id);
-        prevBoxId = "#" + event.target.id + "-box";
+        console.log(event.target.id);
+
+        console.log("DRAG START - PREVIOUS BOX ID: " + prevBoxId);
+        
+        
     });
+
+    text.addEventListener("dragend", (event) => {
+        textId = event.target.id;
+        prevBoxId = "#" + textId + "-box";
+        prevTextContent = event.target.textContent;
+        prevBox = document.querySelector(prevBoxId);
+        console.log("PREVIOUS BOX ID: " + prevBoxId);
+        console.log("TEXT ID: " + textId);
+    })
 });
