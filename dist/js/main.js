@@ -47,8 +47,6 @@ optionBoxes.forEach(box => {
           box.appendChild(element);
         }
       });
-      
-    
 });
 
 optionTexts.forEach(text => {
