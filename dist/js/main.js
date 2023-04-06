@@ -23,22 +23,26 @@ texts.forEach(text => {
 
 
 // MULTIPLE CHOICE EXAMPLE
-const options = document.querySelectorAll('.option');
-const dropzone = document.querySelector('.dropzone');
-const canada = document.getElementById('canada');
+const optionBoxes = document.querySelectorAll(".option-box");
+const optionTexts = document.querySelectorAll(".option-text");
 
-canada.addEventListener("dragstart", (event) => {
-    event.dataTransfer.setData("text/plain", event.target.id);
-    event.dataTransfer.setDragImage(event.target, 0, 0);
+optionBoxes.forEach(box => {
+    box.addEventListener("dragover", (event) => {
+        event.preventDefault();
+    });
+
+    box.addEventListener("drop", (event) => {
+        event.preventDefault();
+        const data = event.dataTransfer.getData("text/plain");
+        const element = document.getElementById(data);
+        box.appendChild(element);
+    });
 });
 
-dropzone.addEventListener("dragover", (event) => {
-    event.preventDefault();
-});
+optionTexts.forEach(text => {
+    text.addEventListener("dragstart", (event) => {
+        event.dataTransfer.setData("text/plain", event.target.id);
+    })
+})
 
-dropzone.addEventListener("drop", (event) => {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text/plain");
-    const element = document.getElementById(data);
-    dropzone.appendChild(element);
-});
+console.log(optionBoxes);
