@@ -27,6 +27,8 @@ const optionBoxes = document.querySelectorAll(".option-box");
 const optionTexts = document.querySelectorAll(".option-text");
 const answerBox = document.querySelector("#answer-box");
 
+let previousBox = null;
+
 optionBoxes.forEach(box => {
   box.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -36,27 +38,26 @@ optionBoxes.forEach(box => {
     event.preventDefault();
     const data = event.dataTransfer.getData("text/plain");
     const element = document.getElementById(data);
-    const sourceParent = element.parentNode;
-    
-    if (box.id === "answer-box") {
-      if (answerBox.contains(element)) {
-        return;
-      }
 
+    if (box.id === "answer-box") {
       if (answerBox.childElementCount > 0) {
-        const existingElement = answerBox.children[0];
-        existingElement.parentNode.removeChild(existingElement);
-        sourceParent.appendChild(existingElement);
-        answerBox.replaceChild(element, answerBox.children[0]);
+        const answerElement = answerBox.children[0];
+        answerBox.replaceChild(element, answerElement);
+        if (previousBox !== null) {
+          previousBox.appendChild(answerElement);
+        } else {
+          document.getElementById(answerElement.getAttribute("data-start-id")).appendChild(answerElement);
+        }
       } else {
         answerBox.appendChild(element);
       }
+      previousBox = box.parentElement;
+      element.setAttribute("data-start-id", box.parentElement.id);
     } else {
-      if (box.contains(element)) {
-        return;
-      }
-
       box.appendChild(element);
+      if (previousBox !== null && previousBox.id === "answer-box") {
+        previousBox.appendChild(document.getElementById(previousBox.children[0].getAttribute("data-start-id")));
+      }
     }
   });
 });
@@ -66,6 +67,10 @@ optionTexts.forEach(text => {
     event.dataTransfer.setData("text/plain", event.target.id);
   });
 });
+
+
+
+
 
 
 
