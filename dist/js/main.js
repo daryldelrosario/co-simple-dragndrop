@@ -26,6 +26,7 @@ texts.forEach(text => {
 const optionBoxes = document.querySelectorAll(".option-box");
 const optionTexts = document.querySelectorAll(".option-text");
 const answerBox = document.querySelector("#answer-box");
+const hello = "this is the new branch";
 
 optionBoxes.forEach(box => {
     box.addEventListener("dragover", (event) => {
@@ -56,4 +57,3 @@ optionTexts.forEach(text => {
         event.dataTransfer.setData("text/plain", event.target.id);
     });
 });
-
