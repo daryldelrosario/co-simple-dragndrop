@@ -8,14 +8,27 @@
     <title>Simple Drag and Drop API</title>
 </head>
 <body>
+    <!-- W3 DRAG AND DROP EXAMPLE -->
+    <h1>W3 Drag and Drop Example</h1>
+    <h2>Drag and Drop</h2>
+    <p>Drag the text back and forth between the boxes.</p>
+    <div id="box-container">
+        <div class="box">
+            <div class="drag-text" draggable="true" id="hello-world">Hello, World!</div>
+        </div>
+        <div class="box">
+            <div class="drag-text" draggable="true" id="canada">Canada</div>
+        </div>
+        <div class="box"></div>
+    </div>
+    
     <h1>Multiple Choice using Drag and Drop API</h1>
-
     <div id="question-container">
         <div class="question">Where was Daryl born?</div>
         <div class="options-container">
             <div class="option" data-answer="false" draggable="true">Manila, Philippines</div>
             <div class="option" data-answer="false" draggable="true">Queenstown, New Zealand</div>
-            <div class="option" data-answer="true" draggable="true">Winnipeg, Canada</div>
+            <div class="option" id="canada" data-answer="true" draggable="true">Winnipeg, Canada</div>
             <div class="option" data-answer="false" draggable="true">Brisbane, Australia</div>
         </div>
     </div>

@@ -8,6 +8,23 @@ h1 {
     padding: 7px;
 }
 
+/* W3 DRAG AND DROP EXAMPLE */
+#box-container {
+    display: flex;
+}
+
+.box {
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MULTIPLE CHOICE EXAMPLE */
 #question-container {
     display: flex;
     flex-direction: column;
