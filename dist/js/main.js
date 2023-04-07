@@ -41,6 +41,10 @@ answerBox.addEventListener("drop", (event) => {
     event.preventDefault();
     const data = event.dataTransfer.getData("text/plain");
     const element = document.getElementById(data);
+    const isCorrect = element.textContent === "Winnipeg, Canada";
+
+    console.log(isCorrect);
+
     if(answerBox.childElementCount > 0) {
         textElement = document.getElementById(textId);
         answerBox.replaceChild(element, answerBox.children[0]);
@@ -48,16 +52,20 @@ answerBox.addEventListener("drop", (event) => {
     } else {
         answerBox.appendChild(element);
     }
+
+    if(isCorrect) {
+        console.log(`You chose ${element.textContent}`)
+        answerBox.classList.add("correct-answer");
+        answerBox.classList.remove("wrong-answer");
+    } else {
+        answerBox.classList.remove("correct-answer");
+        answerBox.classList.add("wrong-answer");
+    }
 });
 
 optionTexts.forEach(text => {
     text.addEventListener("dragstart", (event) => {
         event.dataTransfer.setData("text/plain", event.target.id);
-        console.log(event.target.id);
-
-        console.log("DRAG START - PREVIOUS BOX ID: " + prevBoxId);
-        
-        
     });
 
     text.addEventListener("dragend", (event) => {
@@ -65,7 +73,5 @@ optionTexts.forEach(text => {
         prevBoxId = "#" + textId + "-box";
         prevTextContent = event.target.textContent;
         prevBox = document.querySelector(prevBoxId);
-        console.log("PREVIOUS BOX ID: " + prevBoxId);
-        console.log("TEXT ID: " + textId);
     })
 });
