@@ -33,23 +33,6 @@ let prevTextContent;
 let textId;
 let textElement;
 
-<<<<<<< HEAD
-    box.addEventListener("drop", (event) => {
-        event.preventDefault();
-        const data = event.dataTransfer.getData("text/plain");
-        const element = document.getElementById(data);
-      
-        if (box.id === "answer-box") {
-          if (answerBox.childElementCount > 0) {
-            answerBox.replaceChild(element, answerBox.children[0]);
-          } else {
-            answerBox.appendChild(element);
-          }
-        } else {
-          box.appendChild(element);
-        }
-      });
-=======
 answerBox.addEventListener("dragover", (event) => {
     event.preventDefault();
 });
@@ -78,7 +61,6 @@ answerBox.addEventListener("drop", (event) => {
         answerBox.classList.remove("correct-answer");
         answerBox.classList.add("wrong-answer");
     }
->>>>>>> replace-n-return
 });
 
 optionTexts.forEach(text => {
