@@ -39,24 +39,44 @@ h1 {
     padding: 10px;
 }
 
+#options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .option-box {
     width: 222px;
     height: 22px;
     line-height: 22px;
     text-align: center;
     padding: 10px;
-    border: 1px solid black
-}
-
-.check-answer {
-    width: 222px;
-    height: 22px;
-    line-height: 22px;
-    padding: 10px;
-    text-align: center;
     border: 1px solid black;
+    margin: 7px;
+    background-color: #aaa;
+    border-radius: 3px;
 }
 
 #answer-box {
+    margin: 11px auto;  
+}
+
+.answer-box {
+    width: 222px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    padding: 10px;
+    border: 1px dashed black;
+    margin: 7px;
     background-color: #fff;
+    border-radius: 3px;
+}
+
+.wrong-answer {
+    background-color: lightcoral;
+}
+
+.correct-answer {
+    background-color: lightgreen;
 }
